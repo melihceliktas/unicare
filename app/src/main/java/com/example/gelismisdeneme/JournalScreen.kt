@@ -1,6 +1,6 @@
 package com.example.gelismisdeneme
 
-/* BUGLU İKİ KERE GİRİŞ YAPILMASI GEREKİYO ÇÖZEMEDİM JOURNAL BUGLU PROFİL ÇALIŞIO*/
+
 
 import android.util.Log
 import android.widget.Toast
@@ -51,6 +51,7 @@ import androidx.navigation.NavController
 
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -59,9 +60,14 @@ import java.util.Locale
 @Composable
 fun JournalScreen(
     viewModel: JournalViewModel,
-    userId: String,
+    //userId: String,
     navController: NavController
 ) {
+    val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "unknown_user_id"
+
+
+
+
     var journalEntries by remember { mutableStateOf<List<JournalEntry>>(emptyList()) }
 
     // Journal verilerini almak

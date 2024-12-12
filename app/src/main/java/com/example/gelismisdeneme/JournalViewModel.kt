@@ -7,6 +7,8 @@ import androidx.compose.runtime.Recomposer
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,6 +42,9 @@ class JournalViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
     val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+    private val _journals = MutableLiveData<List<JournalEntry>>() // _encapsulation için kullanıyoz
+    val journals: LiveData<List<JournalEntry>> get() = _journals
 
     // Günlükleri almak için bir fonksiyon
     fun getJournalEntries(userId: String, onResult: (List<JournalEntry>) -> Unit) {

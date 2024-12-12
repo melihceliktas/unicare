@@ -1,5 +1,7 @@
 package com.example.gelismisdeneme
+import android.content.Intent
 import androidx.compose.runtime.Composable
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -15,6 +17,10 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val auth = FirebaseAuth.getInstance()
     val currentUser = auth.currentUser // Firebase'den mevcut kullanıcı bilgisi
+
+
+
+    val journalViewModel : JournalViewModel = viewModel()
 
     // Kullanıcı durumunu kontrol et
     val startDestination = if (currentUser == null) "login" else "home"
@@ -48,8 +54,8 @@ fun AppNavigation() {
 
         composable("details/1") {
             //NameList()
-            val userId = currentUser?.uid ?: "unknown_user_id"
-            JournalScreen(viewModel = viewModel(), userId = userId, navController)
+            //val userId = currentUser?.uid ?: "unknown_user_id"
+            JournalScreen(viewModel = viewModel(),navController) //userId = userId, )
         }
 
         composable("addJournal") {
@@ -79,9 +85,10 @@ fun AppNavigation() {
         composable("details/5") { EmptyPage() }
         composable("details/6") {
             ProfilePage(onSignOut = {
-                auth.signOut()
+
                 navController.navigate("login") {
-                    popUpTo("home") { inclusive = true } // Home ekranını geri yığından kaldır
+                    popUpTo("home") { inclusive = true }
+                // Home ekranını geri yığından kaldır
                 }
             })
         }
