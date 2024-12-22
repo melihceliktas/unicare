@@ -79,7 +79,9 @@ fun AppNavigation() {
         }
 
 
-        composable("details/2") { EmptyPage() }
+        composable("videos") {
+            VideosScreen(navController)
+        }
         composable("details/3") { EmptyPage() }
         composable("details/4") { EmptyPage() }
         composable("details/5") { EmptyPage() }

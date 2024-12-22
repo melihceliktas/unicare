@@ -47,7 +47,7 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            BoxItem("App3") { navController.navigate("details/3") }
+            BoxItem("Videos") { navController.navigate("videos") }
             BoxItem("App4") { navController.navigate("details/4") }
         }
         Spacer(modifier = Modifier.height(16.dp))
