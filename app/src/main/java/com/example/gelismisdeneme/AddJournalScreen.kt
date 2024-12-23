@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -33,7 +34,7 @@ fun AddJournalScreen(viewModel: JournalViewModel, onSaveSuccess: () -> Unit) {
     var errorMessage by remember { mutableStateOf("") }
 
     val textFieldColors = TextFieldDefaults.textFieldColors(
-        containerColor = MaterialTheme.colorScheme.surface, // TextField'ın arka plan rengi
+        containerColor = Color(0xFFFEF9F0), // TextField'ın arka plan rengi
         focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Odaklanıldığında alt çizgi rengi
         unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurfaceVariant, // Odaklanılmadığında alt çizgi rengi
         focusedLabelColor = MaterialTheme.colorScheme.primary, // Etiket rengi odaklandığında
@@ -46,9 +47,11 @@ fun AddJournalScreen(viewModel: JournalViewModel, onSaveSuccess: () -> Unit) {
             "Yeni Günlük Ekle",
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontWeight = FontWeight.Bold,
-                fontSize = 28.sp // Başlık boyutunu artırdık
+                fontSize = 36.sp // Başlık boyutunu artırdık
             ),
-            modifier = Modifier.padding(top = 150.dp, bottom = 16.dp)
+            color = Color(0xFF352019),
+            modifier = Modifier.padding(top = 125.dp, bottom = 16.dp).padding(horizontal = 16.dp),
+
         )
 
         // Başlık TextField
@@ -59,14 +62,15 @@ fun AddJournalScreen(viewModel: JournalViewModel, onSaveSuccess: () -> Unit) {
                 Text(
                     "Başlık",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,        // Font boyutunu büyütme
-                        fontWeight = FontWeight.Bold // Yazıyı bold yapma
-                    )
+                        fontSize = 30.sp,        // Font boyutunu büyütme
+                        color = Color(0xFF352019)
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
-            modifier = Modifier.fillMaxWidth()
+            textStyle = TextStyle(color = Color(0xFF352019), fontSize = 24.sp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -79,15 +83,18 @@ fun AddJournalScreen(viewModel: JournalViewModel, onSaveSuccess: () -> Unit) {
                 Text(
                     "İçerik",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,        // Font boyutunu büyütme
-                        fontWeight = FontWeight.Bold // Yazıyı bold yapma
-                    )
+                        fontSize = 30.sp,        // Font boyutunu büyütme
+                        color = Color(0xFF352019)
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 24.dp)
                 .height(200.dp), // İçeriğin yüksekliğini artırdık
             colors = textFieldColors,
+            textStyle = TextStyle(color = Color(0xFF352019),fontSize = 18.sp),
 
         )
 
@@ -110,10 +117,17 @@ fun AddJournalScreen(viewModel: JournalViewModel, onSaveSuccess: () -> Unit) {
                     errorMessage = "Lütfen tüm alanları doldurun."
                 }
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFF352019)),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Text("Kaydet")
+            Text("Kaydet",
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontSize = 24.sp
+
+                ),
+                color = Color(0xFFFEF9F0)
+            )
         }
 
         // Hata mesajı

@@ -24,7 +24,10 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -48,6 +51,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+
 
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
@@ -79,11 +83,13 @@ fun JournalScreen(
     }
 
     Scaffold(
+        containerColor = Color(0xFF352019),
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate("addJournal") },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
+                containerColor = Color(0xFF352019),
+                contentColor = Color(0xFFFEF9F0),
+                modifier = Modifier.padding(12.dp)
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Yeni Günlük Ekle")
             }
@@ -95,14 +101,17 @@ fun JournalScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
+
         ) {
             Text(
                 "Günlükler",
-                style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                modifier = Modifier.padding(top = 32.dp)
+                style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
+                modifier = Modifier.padding(top = 60.dp).padding(horizontal = 8.dp),
+                color = Color(0xFFFEF9F0)
+
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(0.dp))
 
             LazyColumn {
                 items(journalEntries) { entry ->
@@ -134,14 +143,25 @@ fun JournalListItem(
             .padding(8.dp)
             .clickable {
                 navController.navigate("editJournal/${entry.id}/${entry.title}/${entry.content}")
-            }
-            .background(MaterialTheme.colorScheme.surface),
+            },
         shape = RoundedCornerShape(12.dp), // Köşeleri yuvarlamak için
+
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFFEF9F0)
+        ),
+
+
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(entry.title, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+            Text(entry.title, style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold, color = Color(0xFF352019))
+
             Spacer(modifier = Modifier.height(8.dp))
-            Text(entry.content, style = MaterialTheme.typography.bodyLarge)
+
+            Text(entry.content, style = MaterialTheme.typography.bodyLarge,
+                color = Color(0xFF352019))
+
+
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -176,13 +196,13 @@ fun JournalListItem(
                     },
                     modifier = Modifier.padding(end = 8.dp),
                     shape = RoundedCornerShape(50),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
+                    border = BorderStroke(1.dp, color = Color(0xFF352019))
                 ) {
-                    Text("Düzenle", color = MaterialTheme.colorScheme.primary)
+                    Text("Düzenle", color = Color(0xFF352019))
                 }
 
                 // Silme butonu
-                OutlinedButton(
+                Button(
                     onClick = {
                         viewModel.deleteJournalEntry(entry.id, entry.userId) { success ->
                             if (success) {
@@ -195,9 +215,14 @@ fun JournalListItem(
                         }
                     },
                     shape = RoundedCornerShape(50),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.error)
+                    border = BorderStroke(1.dp, color = Color(0xFF352019)),
+                    colors = ButtonColors(containerColor = Color(0xFF352019),
+                        contentColor = Color(0xFF352019),
+                        disabledContentColor = Color(0xFF352019),
+                        disabledContainerColor = Color(0xFF352019))
+
                 ) {
-                    Text("Sil", color = MaterialTheme.colorScheme.error)
+                    Text("Sil", color = Color(0xFFFEF9F0))
                 }
             }
         }

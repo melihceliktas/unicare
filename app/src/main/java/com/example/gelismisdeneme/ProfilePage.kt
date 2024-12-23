@@ -2,6 +2,7 @@ package com.example.gelismisdeneme
 
 import android.app.Activity
 import android.content.Intent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -11,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -38,7 +40,7 @@ fun ProfilePage(
     val errorMessage by viewModel.errorMessage.collectAsState()
 
     val textFieldColors = TextFieldDefaults.textFieldColors(
-        containerColor = MaterialTheme.colorScheme.surface, // TextField'ın arka plan rengi
+        containerColor = Color(0xFFFEF9F0), // TextField'ın arka plan rengi
         focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Odaklanıldığında alt çizgi rengi
         unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurfaceVariant, // Odaklanılmadığında alt çizgi rengi
         focusedLabelColor = MaterialTheme.colorScheme.primary, // Etiket rengi odaklandığında
@@ -59,9 +61,11 @@ fun ProfilePage(
                 fontWeight = FontWeight.Bold,
                 fontSize = 28.sp // Başlık boyutunu artırdık
             ),
-            modifier = Modifier.padding(top = 150.dp, bottom = 16.dp)
-        )
+            color = Color(0xFF352019),
+            modifier = Modifier.padding(top = 125.dp, bottom = 16.dp).padding(horizontal = 16.dp),
 
+        )
+        Spacer(modifier = Modifier.height(32.dp))
         // Ad TextField
         TextField(
             value = firstName,
@@ -70,14 +74,16 @@ fun ProfilePage(
                 Text(
                     "Ad",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,        // Font boyutunu büyütme
-                        fontWeight = FontWeight.Bold // Yazıyı bold yapma
-                    )
+                        fontSize = 24.sp,        // Font boyutunu büyütme
+
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
+
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
-            modifier = Modifier.fillMaxWidth()
+            textStyle = TextStyle(color = Color(0xFF352019)),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -90,14 +96,15 @@ fun ProfilePage(
                 Text(
                     "Soyad",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                        fontSize = 24.sp
+
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
-            modifier = Modifier.fillMaxWidth()
+            textStyle = TextStyle(color = Color(0xFF352019)),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -110,14 +117,15 @@ fun ProfilePage(
                 Text(
                     "Öğrenci Numarası",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                        fontSize = 24.sp,
+
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
-            modifier = Modifier.fillMaxWidth()
+            textStyle = TextStyle(color = Color(0xFF352019)),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -130,27 +138,34 @@ fun ProfilePage(
                 Text(
                     "E-posta",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                        fontSize = 24.sp,
+
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             colors = textFieldColors,
             enabled = false // E-posta düzenlenemez
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         // Bilgileri Güncelle butonu
         Button(
             onClick = {
                 viewModel.saveUserData()
             },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(8.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFFFEF970))
         ) {
-            Text("Bilgileri Güncelle")
+            Text("Bilgileri Güncelle",
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontSize = 24.sp
+                ),
+                color = Color(0xFF352019))
+
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -163,11 +178,15 @@ fun ProfilePage(
                 onSignOut() // Giriş ekranına yönlendir
 
             },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFFFEF970)),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Text("Çıkış Yap")
+            Text("Çıkış Yap",
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontSize = 24.sp
+                ),
+                color = Color(0xFF352019))
         }
 
         // Hata mesajı

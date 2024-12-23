@@ -25,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -45,7 +46,7 @@ fun EditJournalScreen(
 ) {
 
     val textFieldColors = TextFieldDefaults.textFieldColors(
-        containerColor = MaterialTheme.colorScheme.surface, // TextField'ın arka plan rengi
+        containerColor = Color(0xFFFEF9F0), // TextField'ın arka plan rengi
         focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Odaklanıldığında alt çizgi rengi
         unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurfaceVariant, // Odaklanılmadığında alt çizgi rengi
         focusedLabelColor = MaterialTheme.colorScheme.primary, // Etiket rengi odaklandığında
@@ -66,10 +67,12 @@ fun EditJournalScreen(
             "Günlük Düzenle",
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontWeight = FontWeight.Bold,
-                fontSize = 28.sp // Başlık boyutunu artırdık
+                fontSize = 36.sp // Başlık boyutunu artırdık
             ),
+            color = Color(0xFF352019),
             modifier = Modifier
-                .padding(top = 150.dp, bottom = 16.dp)
+                .padding(top = 125.dp, bottom = 16.dp)
+                .padding(horizontal = 16.dp),
 
         )
 
@@ -81,14 +84,15 @@ fun EditJournalScreen(
                 Text(
                     "Başlık",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,        // Font boyutunu büyütme
-                        fontWeight = FontWeight.Bold // Yazıyı bold yapma
-                    )
+                        fontSize = 30.sp,        // Font boyutunu büyütme
+                        color = Color(0xFF352019)
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = MaterialTheme.colorScheme.onSurface),
-            modifier = Modifier.fillMaxWidth()
+            textStyle = TextStyle(color = Color(0xFF352019), fontSize = 24.sp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -101,17 +105,20 @@ fun EditJournalScreen(
                 Text(
                     "İçerik",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontSize = 16.sp,        // Font boyutunu büyütme
-                        fontWeight = FontWeight.Bold // Yazıyı bold yapma
-                    )
+                        fontSize = 30.sp,        // Font boyutunu büyütme
+                        color = Color(0xFF352019)
+                    ),
+                    modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 24.dp)
                 .height(200.dp), // İçeriğin yüksekliğini artırdık
             colors = textFieldColors,
+            textStyle = TextStyle(color = Color(0xFF352019),fontSize = 18.sp),
 
-        )
+            )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -127,10 +134,17 @@ fun EditJournalScreen(
                     }
                 }
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFF352019)),
             shape = RoundedCornerShape(8.dp)
         ) {
-            Text("Güncellemeyi Kaydet")
+            Text("Güncellemeyi Kaydet",
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontSize = 24.sp
+
+                ),
+                color = Color(0xFFFEF9F0)
+            )
         }
     }
 }

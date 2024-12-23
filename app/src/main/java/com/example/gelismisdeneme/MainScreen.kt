@@ -1,6 +1,7 @@
 package com.example.gelismisdeneme
 
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,6 +23,7 @@ import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.StickyNote2
 import androidx.compose.material3.Icon
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 
 import androidx.navigation.NavController
@@ -30,8 +32,8 @@ import androidx.navigation.NavController
 fun HomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF5F5F5)),
+            .fillMaxSize(),
+
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -39,24 +41,24 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            BoxItemBook("Journal") { navController.navigate("details/1") }
-            BoxItem("App2") { navController.navigate("details/2") }
+            BoxItemBook("Günlük") { navController.navigate("details/1") }
+            BoxItemHealth("Sağlık") { navController.navigate("details/2") }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            BoxItem("App3") { navController.navigate("details/3") }
-            BoxItem("App4") { navController.navigate("details/4") }
+            BoxItemMeditation("Meditasyon") { navController.navigate("details/3") }
+            BoxItemAppointment("Randevu") { navController.navigate("details/4") }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            BoxItem("App5") { navController.navigate("details/5") }
-            BoxItemWithIcon("Profile", onClick = { navController.navigate("details/6") })
+            BoxItemSettings("Ayarlar") { navController.navigate("details/5") }
+            BoxItemWithIcon("Profil", onClick = { navController.navigate("details/6") })
         }
     }
 }
@@ -67,7 +69,7 @@ fun BoxItem(label: String, onClick: () -> Unit) {
         modifier = Modifier
             .size(175.dp)
             .background(
-                color = Color(0xFF6200EE),
+                color = Color(0xFF352019),
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() },
@@ -77,7 +79,8 @@ fun BoxItem(label: String, onClick: () -> Unit) {
             text = label,
             color = Color.White,
             fontSize = 16.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.headlineLarge
         )
     }
 }
@@ -101,7 +104,7 @@ fun BoxItemWithIcon(label: String, onClick: () -> Unit)  { //Profil iconu
         modifier = Modifier
             .size(175.dp)
             .background(
-                color = Color(0xFF6200EE),
+                color = Color(0xFF352019),
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() },
@@ -109,18 +112,28 @@ fun BoxItemWithIcon(label: String, onClick: () -> Unit)  { //Profil iconu
     ) {
         // Profil ikonu ve metin
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
+            /*Icon(
                 imageVector = Icons.Filled.Person, // Material3 profil ikonu
                 contentDescription = "Profil Ikonu",
                 modifier = Modifier.size(48.dp),
                 tint = Color.White
             )
+            */
+
+            Image(
+                painter = painterResource(id = R.drawable.profil),
+                contentDescription = "Profil Logosu",
+                modifier = Modifier.size(90.dp),
+                contentScale = ContentScale.FillHeight
+            )
+
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = label,
                 color = Color.White,
                 fontSize = 16.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge
             )
         }
     }
@@ -132,7 +145,7 @@ fun BoxItemBook(label: String, onClick: () -> Unit) {
         modifier = Modifier
             .size(175.dp)
             .background(
-                color = Color(0xFF6200EE),
+                color = Color(0xFF352019),
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() },
@@ -140,20 +153,171 @@ fun BoxItemBook(label: String, onClick: () -> Unit) {
     ) {
         // Kitap ikonu ve metin
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
+            /*Icon(
                 imageVector = Icons.Filled.MenuBook, // Kitap ikonu
                 contentDescription = "Kitap Ikonu",
                 modifier = Modifier.size(48.dp),
                 tint = Color.White
+            )*/
+
+            Image(
+                painter = painterResource(id = R.drawable.gunluk),
+                contentDescription = "Günlük Logosu",
+                modifier = Modifier.size(90.dp),
+                contentScale = ContentScale.FillHeight
             )
+
+
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = label,
                 color = Color.White,
                 fontSize = 16.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge
             )
         }
     }
 }
 
+@Composable
+fun BoxItemHealth(label: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(175.dp)
+            .background(
+                color = Color(0xFF352019),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+
+            Image(
+                painter = painterResource(id = R.drawable.saglik),
+                contentDescription = "Saglik Logosu",
+                modifier = Modifier.size(90.dp),
+                contentScale = ContentScale.FillHeight
+            )
+
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = label,
+                color = Color.White,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge
+            )
+        }
+    }
+}
+
+@Composable
+fun BoxItemMeditation(label: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(175.dp)
+            .background(
+                color = Color(0xFF352019),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+            Image(
+                painter = painterResource(id = R.drawable.meditasyon),
+                contentDescription = "Meditasyon Logosu",
+                modifier = Modifier.size(90.dp),
+                contentScale = ContentScale.FillWidth
+            )
+
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = label,
+                color = Color.White,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge
+            )
+        }
+    }
+}
+
+@Composable
+fun BoxItemAppointment(label: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(175.dp)
+            .background(
+                color = Color(0xFF352019),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+            Image(
+                painter = painterResource(id = R.drawable.randevu),
+                contentDescription = "Randevu Logosu",
+                modifier = Modifier.size(90.dp),
+                contentScale = ContentScale.FillHeight
+            )
+
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = label,
+                color = Color.White,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge
+            )
+        }
+    }
+}
+
+@Composable
+fun BoxItemSettings(label: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(175.dp)
+            .background(
+                color = Color(0xFF352019),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+
+            Image(
+                painter = painterResource(id = R.drawable.ayarlar),
+                contentDescription = "Ayarlar Logosu",
+                modifier = Modifier.size(90.dp),
+                contentScale = ContentScale.FillHeight
+            )
+
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = label,
+                color = Color.White,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge
+            )
+        }
+    }
+}

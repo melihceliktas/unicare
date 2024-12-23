@@ -7,10 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,9 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.firebase.auth.FirebaseAuth
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(onRegisterSuccess: () -> Unit) {
     var email by remember { mutableStateOf("") }
@@ -43,15 +49,23 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Kayıt Ol", style = MaterialTheme.typography.displayMedium)
+        Text(text = "Giriş Yap", style = MaterialTheme.typography.headlineLarge.copy(
+            fontSize = 40.sp,
+            color = Color(0xFF352019)
+        ))
 
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
             value = firstName,
             onValueChange = { firstName = it },
-            label = { Text("Ad") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text("Ad", color = Color(0xFF352019)) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
+                cursorColor = Color(0xFF352019) // İmleç rengi
+            )
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -59,8 +73,13 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = lastName,
             onValueChange = { lastName = it },
-            label = { Text("Soyad") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text("Soyad", color = Color(0xFF352019)) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
+                cursorColor = Color(0xFF352019) // İmleç rengi
+            )
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -68,8 +87,13 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = studentNumber,
             onValueChange = { studentNumber = it },
-            label = { Text("Öğrenci Numarası") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text("Öğrenci Numarası", color = Color(0xFF352019)) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
+                cursorColor = Color(0xFF352019) // İmleç rengi
+            )
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -77,8 +101,13 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("E-posta") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text("E-posta", color = Color(0xFF352019)) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
+                cursorColor = Color(0xFF352019) // İmleç rengi
+            )
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -86,8 +115,13 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Şifre") },
+            label = { Text("Şifre", color = Color(0xFF352019)) },
             modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
+                cursorColor = Color(0xFF352019) // İmleç rengi
+            ),
             visualTransformation = PasswordVisualTransformation()
         )
 
@@ -117,9 +151,16 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
                     errorMessage = "Tüm alanları doldurun!"
                 }
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFFFEF970)),
+            shape = RoundedCornerShape(8.dp)
         ) {
-            Text("Kayıt Ol")
+            Text(
+                "Kayıt Ol",
+                        style = MaterialTheme.typography.headlineLarge.copy(
+                        fontSize = 24.sp
+                        ),
+                color = Color(0xFF352019))
         }
 
         if (errorMessage.isNotEmpty()) {
