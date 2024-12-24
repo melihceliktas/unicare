@@ -80,7 +80,9 @@ fun AppNavigation() {
 
 
         composable("details/2") { EmptyPage() }
-        composable("details/3") { EmptyPage() }
+        composable("details/3") { 
+            MeditationScreen()
+        }
         composable("details/4") { 
             AppointmentScreen()
         }
