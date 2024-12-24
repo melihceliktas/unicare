@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.gelismisdeneme
 
 import android.view.ViewGroup
@@ -29,6 +31,20 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material.icons.filled.AccessTime
+import androidx.compose.material.icons.filled.CalendarToday
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Psychology
+import androidx.compose.material.icons.filled.School
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.graphics.vector.ImageVector
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,143 +55,152 @@ fun AppointmentScreen(
     val appointments by viewModel.appointments.collectAsState()
     val scrollState = rememberScrollState()
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
-            .padding(16.dp)
-    ) {
-        // Header
-        Text(
-            text = "Psikolojik Danışmanlık",
-            style = MaterialTheme.typography.headlineLarge.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = 36.sp
-            ),
-            color = Color(0xFF352019),
-            modifier = Modifier.padding(top = 60.dp, bottom = 8.dp)
-        )
-
-        // Description
-        Text(
-            text = "Üniversite hayatında karşılaştığınız zorlukları birlikte aşalım",
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color(0xFF352019),
-            modifier = Modifier.padding(bottom = 24.dp)
-        )
-
-        // Info Cards
-        InfoCard(
-            icon = Icons.Default.Person,
-            title = "Uzman Psikolog",
-            description = "Deneyimli uzman psikologlarımız ile birebir görüşme imkanı"
-        )
-
-        InfoCard(
-            icon = Icons.Default.LocationOn,
-            title = "Görüşme Yeri",
-            description = "Üniversite Sağlık Merkezi, B Blok, 2. Kat"
-        )
-
-        InfoCard(
-            icon = Icons.Default.Info,
-            title = "Önemli Bilgiler",
-            description = "• İlk görüşme 45 dakika sürmektedir\n" +
-                    "• Randevunuza 5 dakika önce gelmeniz önerilir\n" +
-                    "• Görüşmeler gizlilik esasına dayanır\n" +
-                    "• Acil durumlar için 7/24 destek hattı: 0850 XXX XX XX"
-        )
-
-        // Calendly Button
-        Button(
-            onClick = { showCalendly = true },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 24.dp),
-            colors = ButtonDefaults.buttonColors(Color(0xFF352019)),
-            shape = RoundedCornerShape(8.dp)
-        ) {
-            Text(
-                "Randevu Planla",
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    fontSize = 24.sp
-                ),
-                color = Color(0xFFFEF9F0),
-                modifier = Modifier.padding(vertical = 8.dp)
-            )
-        }
-
-        // Upcoming Appointments Section
-        if (appointments.isNotEmpty()) {
-            Text(
-                text = "Yaklaşan Randevularınız",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
-                ),
-                color = Color(0xFF352019),
-                modifier = Modifier.padding(vertical = 16.dp)
-            )
-
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                items(appointments) { appointment ->
-                    AppointmentCard(
-                        appointment = appointment,
-                        onDelete = { viewModel.deleteAppointment(appointment) }
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFFFEF9F0),
+                        Color(0xFFF5E6D3)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(16.dp)
+        ) {
+            // Welcome Section
+            WelcomeSection()
+            
+            // Services Section
+            ServicesSection()
+            
+            // Appointment Booking Section
+            AppointmentBookingSection(
+                onBookClick = { showCalendly = true }
+            )
+            
+            // FAQ Section
+            FAQSection()
+            
+            // Upcoming Appointments Section
+            if (appointments.isNotEmpty()) {
+                UpcomingAppointmentsSection(
+                    appointments = appointments,
+                    onDelete = { viewModel.deleteAppointment(it) }
+                )
             }
         }
     }
 
     // Calendly Dialog
     if (showCalendly) {
-        AlertDialog(
-            onDismissRequest = { showCalendly = false },
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            properties = DialogProperties(usePlatformDefaultWidth = false),
-            content = {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    CalendlyWebView(
-                        onClose = { showCalendly = false }
-                    )
-                    IconButton(
-                        onClick = { showCalendly = false },
-                        modifier = Modifier
-                            .align(Alignment.TopEnd)
-                            .padding(8.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
-                            tint = Color(0xFF352019)
-                        )
-                    }
-                }
-            }
+        CalendlyDialog(
+            onDismiss = { showCalendly = false }
         )
     }
 }
 
 @Composable
-fun InfoCard(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
-    title: String,
-    description: String
-) {
+fun WelcomeSection() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp)
+    ) {
+        Text(
+            text = "Psikolojik Danışmanlık",
+            style = MaterialTheme.typography.headlineLarge.copy(
+                fontWeight = FontWeight.Bold,
+                fontSize = 36.sp
+            ),
+            color = Color(0xFF352019)
+        )
+        
+        Text(
+            text = "Üniversite hayatında karşılaştığınız zorlukları birlikte aşalım",
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color(0xFF352019).copy(alpha = 0.8f),
+            modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            StatCard("500+", "Öğrenci", Icons.Default.School)
+            StatCard("10+", "Uzman", Icons.Default.Psychology)
+            StatCard("98%", "Memnuniyet", Icons.Default.CheckCircle)
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun StatCard(number: String, label: String, icon: ImageVector) {
+    Card(
+        modifier = Modifier.padding(4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF352019))
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = Color(0xFFFEF9F0),
+                modifier = Modifier.size(24.dp)
+            )
+            Text(
+                text = number,
+                style = MaterialTheme.typography.titleLarge,
+                color = Color(0xFFFEF9F0)
+            )
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodySmall,
+                color = Color(0xFFFEF9F0)
+            )
+        }
+    }
+}
+
+@Composable
+fun ServicesSection() {
+    Text(
+        text = "Hizmetlerimiz",
+        style = MaterialTheme.typography.titleLarge.copy(
+            fontWeight = FontWeight.Bold
+        ),
+        color = Color(0xFF352019),
+        modifier = Modifier.padding(vertical = 16.dp)
+    )
+
+    val services = listOf(
+        Triple(Icons.Default.Psychology, "Bireysel Danışmanlık", "Kişisel gelişim ve sorunlarınız için birebir görüşmeler"),
+        Triple(Icons.Default.School, "Akademik Danışmanlık", "Eğitim hayatınızdaki zorlukları aşmanız için destek"),
+        Triple(Icons.Default.AccessTime, "Kriz Danışmanlığı", "Acil durumlar için 7/24 destek hizmeti")
+    )
+
+    services.forEach { (icon, title, description) ->
+        ServiceCard(icon, title, description)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ServiceCard(icon: ImageVector, title: String, description: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFFEF9F0)
-        ),
-        elevation = CardDefaults.cardElevation(4.dp)
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0)),
+        border = BorderStroke(1.dp, Color(0xFF352019).copy(alpha = 0.1f))
     ) {
         Row(
             modifier = Modifier
@@ -199,15 +224,217 @@ fun InfoCard(
                     ),
                     color = Color(0xFF352019)
                 )
-                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = description,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF352019)
+                    color = Color(0xFF352019).copy(alpha = 0.8f)
                 )
             }
         }
     }
+}
+
+@Composable
+fun AppointmentBookingSection(onBookClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 24.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF352019))
+    ) {
+        Column(
+            modifier = Modifier.padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Randevu Planlayın",
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.Bold
+                ),
+                color = Color(0xFFFEF9F0)
+            )
+            
+            Text(
+                text = "İlk görüşme ücretsizdir",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color(0xFFFEF9F0).copy(alpha = 0.8f),
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+
+            Button(
+                onClick = onBookClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFEF9F0)),
+                contentPadding = PaddingValues(16.dp)
+            ) {
+                Text(
+                    "Hemen Randevu Al",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color(0xFF352019)
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                ContactInfo(Icons.Default.Email, "Email", "destek@unicare.com")
+                ContactInfo(Icons.Default.Phone, "Telefon", "0850 XXX XX XX")
+            }
+        }
+    }
+}
+
+@Composable
+fun ContactInfo(icon: ImageVector, title: String, info: String) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = Color(0xFFFEF9F0),
+            modifier = Modifier.size(24.dp)
+        )
+        Text(
+            text = title,
+            style = MaterialTheme.typography.bodySmall,
+            color = Color(0xFFFEF9F0).copy(alpha = 0.8f)
+        )
+        Text(
+            text = info,
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color(0xFFFEF9F0)
+        )
+    }
+}
+
+@Composable
+fun FAQSection() {
+    Text(
+        text = "Sıkça Sorulan Sorular",
+        style = MaterialTheme.typography.titleLarge.copy(
+            fontWeight = FontWeight.Bold
+        ),
+        color = Color(0xFF352019),
+        modifier = Modifier.padding(vertical = 16.dp)
+    )
+
+    val faqs = listOf(
+        "Görüşmeler ne kadar sürüyor?" to "İlk görüşme 45 dakika, takip görüşmeleri 30-40 dakika sürmektedir.",
+        "Görüşmeler ücretli mi?" to "İlk görüşme ücretsizdir. Sonraki görüşmeler için öğrenci indirimi uygulanmaktadır.",
+        "Randevumu nasıl iptal edebilirim?" to "Görüşmeden 24 saat öncesine kadar randevunuzu iptal edebilirsiniz."
+    )
+
+    faqs.forEach { (question, answer) ->
+        FAQCard(question, answer)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FAQCard(question: String, answer: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(
+                text = question,
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold
+                ),
+                color = Color(0xFF352019)
+            )
+            Text(
+                text = answer,
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color(0xFF352019).copy(alpha = 0.8f),
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun UpcomingAppointmentsSection(
+    appointments: List<AppointmentEntity>,
+    onDelete: (AppointmentEntity) -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(
+                text = "Yaklaşan Randevularınız",
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.Bold
+                ),
+                color = Color(0xFF352019),
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+
+            if (appointments.isEmpty()) {
+                Text(
+                    text = "Henüz planlanmış randevunuz bulunmamaktadır.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color(0xFF352019).copy(alpha = 0.8f)
+                )
+            } else {
+                appointments.forEach { appointment ->
+                    AppointmentCard(
+                        appointment = appointment,
+                        onDelete = { onDelete(appointment) }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CalendlyDialog(onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        properties = DialogProperties(usePlatformDefaultWidth = false),
+        content = {
+            Box(modifier = Modifier.fillMaxSize()) {
+                CalendlyWebView(
+                    onClose = onDismiss
+                )
+                IconButton(
+                    onClick = onDismiss,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(8.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "Close",
+                        tint = Color(0xFF352019)
+                    )
+                }
+            }
+        }
+    )
 }
 
 @Composable
@@ -231,6 +458,7 @@ fun CalendlyWebView(onClose: () -> Unit) {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppointmentCard(
     appointment: AppointmentEntity,
