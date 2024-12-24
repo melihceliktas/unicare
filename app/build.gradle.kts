@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
-
+    id("kotlin-kapt")
 }
 
 android {
@@ -75,7 +75,12 @@ dependencies {
     implementation ("androidx.compose.material3:material3:<version>")
     implementation ("androidx.compose.material:material-icons-extended:<latest_version>")
 
-
+    val room_version = "2.6.1"
+    
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 
 }
 

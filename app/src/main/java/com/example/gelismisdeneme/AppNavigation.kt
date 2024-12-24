@@ -81,7 +81,9 @@ fun AppNavigation() {
 
         composable("details/2") { EmptyPage() }
         composable("details/3") { EmptyPage() }
-        composable("details/4") { EmptyPage() }
+        composable("details/4") { 
+            AppointmentScreen()
+        }
         composable("details/5") { EmptyPage() }
         composable("details/6") {
             ProfilePage(onSignOut = {
