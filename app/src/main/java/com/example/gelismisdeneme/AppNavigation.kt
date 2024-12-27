@@ -1,5 +1,6 @@
 package com.example.gelismisdeneme
 import android.content.Intent
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -86,7 +87,9 @@ fun AppNavigation() {
         composable("details/4") { 
             AppointmentScreen()
         }
-        composable("details/5") { EmptyPage() }
+        composable("details/5") {
+            SettingsScreen(SettingsViewModel())
+        }
         composable("details/6") {
             ProfilePage(onSignOut = {
 
