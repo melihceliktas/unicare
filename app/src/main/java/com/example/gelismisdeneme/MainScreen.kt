@@ -42,7 +42,7 @@ fun HomeScreen(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             BoxItemBook("Günlük") { navController.navigate("details/1") }
-            BoxItemHealth("Sağlık") { navController.navigate("details/2") }
+            BoxItemHealth("Sağlık") { navController.navigate("videos") }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
