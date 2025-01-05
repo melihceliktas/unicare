@@ -61,8 +61,8 @@ fun AppointmentScreen(
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFEF9F0),
-                        Color(0xFFF5E6D3)
+                        MaterialTheme.colorScheme.background,
+                        MaterialTheme.colorScheme.secondary
                     )
                 )
             )
@@ -118,13 +118,13 @@ fun WelcomeSection() {
                 fontWeight = FontWeight.Bold,
                 fontSize = 36.sp
             ),
-            color = Color(0xFF352019)
+            color = MaterialTheme.colorScheme.primary
         )
         
         Text(
             text = "Üniversite hayatında karşılaştığınız zorlukları birlikte aşalım",
             style = MaterialTheme.typography.bodyLarge,
-            color = Color(0xFF352019).copy(alpha = 0.8f),
+            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
             modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
         )
 
@@ -144,7 +144,7 @@ fun WelcomeSection() {
 fun StatCard(number: String, label: String, icon: ImageVector) {
     Card(
         modifier = Modifier.padding(4.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF352019))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -153,18 +153,18 @@ fun StatCard(number: String, label: String, icon: ImageVector) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = Color(0xFFFEF9F0),
+                tint = MaterialTheme.colorScheme.background,
                 modifier = Modifier.size(24.dp)
             )
             Text(
                 text = number,
                 style = MaterialTheme.typography.titleLarge,
-                color = Color(0xFFFEF9F0)
+                color = MaterialTheme.colorScheme.background
             )
             Text(
                 text = label,
                 style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFFFEF9F0)
+                color = MaterialTheme.colorScheme.background
             )
         }
     }
@@ -177,7 +177,7 @@ fun ServicesSection() {
         style = MaterialTheme.typography.titleLarge.copy(
             fontWeight = FontWeight.Bold
         ),
-        color = Color(0xFF352019),
+        color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 16.dp)
     )
 
@@ -199,8 +199,8 @@ fun ServiceCard(icon: ImageVector, title: String, description: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0)),
-        border = BorderStroke(1.dp, Color(0xFF352019).copy(alpha = 0.1f))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
     ) {
         Row(
             modifier = Modifier
@@ -211,7 +211,7 @@ fun ServiceCard(icon: ImageVector, title: String, description: String) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = Color(0xFF352019),
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .size(40.dp)
                     .padding(end = 16.dp)
@@ -222,12 +222,12 @@ fun ServiceCard(icon: ImageVector, title: String, description: String) {
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold
                     ),
-                    color = Color(0xFF352019)
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Text(
                     text = description,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF352019).copy(alpha = 0.8f)
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
                 )
             }
         }
@@ -240,7 +240,7 @@ fun AppointmentBookingSection(onBookClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 24.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF352019))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary)
     ) {
         Column(
             modifier = Modifier.padding(24.dp),
@@ -251,13 +251,13 @@ fun AppointmentBookingSection(onBookClick: () -> Unit) {
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Bold
                 ),
-                color = Color(0xFFFEF9F0)
+                color = MaterialTheme.colorScheme.background
             )
             
             Text(
                 text = "İlk görüşme ücretsizdir",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFFFEF9F0).copy(alpha = 0.8f),
+                color = MaterialTheme.colorScheme.background.copy(alpha = 0.8f),
                 modifier = Modifier.padding(vertical = 8.dp)
             )
 
@@ -266,13 +266,13 @@ fun AppointmentBookingSection(onBookClick: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFEF9F0)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.background),
                 contentPadding = PaddingValues(16.dp)
             ) {
                 Text(
                     "Hemen Randevu Al",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color(0xFF352019)
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
 
@@ -297,18 +297,18 @@ fun ContactInfo(icon: ImageVector, title: String, info: String) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color(0xFFFEF9F0),
+            tint = MaterialTheme.colorScheme.background,
             modifier = Modifier.size(24.dp)
         )
         Text(
             text = title,
             style = MaterialTheme.typography.bodySmall,
-            color = Color(0xFFFEF9F0).copy(alpha = 0.8f)
+            color = MaterialTheme.colorScheme.background.copy(alpha = 0.8f)
         )
         Text(
             text = info,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFFFEF9F0)
+            color = MaterialTheme.colorScheme.background
         )
     }
 }
@@ -320,7 +320,7 @@ fun FAQSection() {
         style = MaterialTheme.typography.titleLarge.copy(
             fontWeight = FontWeight.Bold
         ),
-        color = Color(0xFF352019),
+        color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 16.dp)
     )
 
@@ -342,7 +342,7 @@ fun FAQCard(question: String, answer: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -352,12 +352,12 @@ fun FAQCard(question: String, answer: String) {
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold
                 ),
-                color = Color(0xFF352019)
+                color = MaterialTheme.colorScheme.primary
             )
             Text(
                 text = answer,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFF352019).copy(alpha = 0.8f),
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
                 modifier = Modifier.padding(top = 8.dp)
             )
         }
@@ -373,7 +373,7 @@ fun UpcomingAppointmentsSection(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -383,7 +383,7 @@ fun UpcomingAppointmentsSection(
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Bold
                 ),
-                color = Color(0xFF352019),
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
@@ -391,7 +391,7 @@ fun UpcomingAppointmentsSection(
                 Text(
                     text = "Henüz planlanmış randevunuz bulunmamaktadır.",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF352019).copy(alpha = 0.8f)
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
                 )
             } else {
                 appointments.forEach { appointment ->
@@ -429,7 +429,7 @@ fun CalendlyDialog(onDismiss: () -> Unit) {
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Close",
-                        tint = Color(0xFF352019)
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -469,7 +469,7 @@ fun AppointmentCard(
             .fillMaxWidth()
             .padding(vertical = 4.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFFEF9F0)
+            containerColor = MaterialTheme.colorScheme.background
         )
     ) {
         Column(
@@ -479,17 +479,17 @@ fun AppointmentCard(
             Text(
                 text = "Tarih: ${appointment.date}",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF352019)
+                color = MaterialTheme.colorScheme.primary
             )
             Text(
                 text = "Saat: ${appointment.time}",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF352019)
+                color = MaterialTheme.colorScheme.primary
             )
             Text(
                 text = "Neden: ${appointment.reason}",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF352019)
+                color = MaterialTheme.colorScheme.primary
             )
             
             Button(
@@ -497,9 +497,9 @@ fun AppointmentCard(
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(top = 8.dp),
-                colors = ButtonDefaults.buttonColors(Color(0xFF352019))
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
             ) {
-                Text("İptal Et", color = Color(0xFFFEF9F0))
+                Text("İptal Et", color = MaterialTheme.colorScheme.background)
             }
         }
     }

@@ -62,8 +62,8 @@ fun VideosScreen(navController: NavController) {
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFEF9F0),
-                        Color(0xFFF5E6D3)
+                        MaterialTheme.colorScheme.background,
+                        MaterialTheme.colorScheme.secondary
                     )
                 )
             )
@@ -73,7 +73,7 @@ fun VideosScreen(navController: NavController) {
             text = "Sağlık",
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF352019),
+                color = MaterialTheme.colorScheme.primary,
                 fontSize = 28.sp
             ),
             modifier = Modifier
@@ -106,13 +106,13 @@ fun VideoCard(video: Video, onClick: () -> Unit) {
             .fillMaxWidth()
             .height(150.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF352019)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
         onClick = onClick
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF352019)) // Single solid background color
+                .background(MaterialTheme.colorScheme.primary) // Single solid background color
         ) {
             Row(
                 modifier = Modifier.fillMaxSize(),
@@ -135,7 +135,7 @@ fun VideoCard(video: Video, onClick: () -> Unit) {
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFFFEF9F0),
+                        color = MaterialTheme.colorScheme.background,
                         textAlign = TextAlign.Start
                     ),
                     modifier = Modifier.padding(end = 16.dp)

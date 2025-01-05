@@ -23,6 +23,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.room.FtsOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -42,7 +43,7 @@ fun ProfilePage(
     val errorMessage by viewModel.errorMessage.collectAsState()
 
     val textFieldColors = TextFieldDefaults.textFieldColors(
-        containerColor = Color(0xFFFEF9F0), // TextField'ın arka plan rengi
+        containerColor = MaterialTheme.colorScheme.background, // TextField'ın arka plan rengi
         focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Odaklanıldığında alt çizgi rengi
         unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurfaceVariant, // Odaklanılmadığında alt çizgi rengi
         focusedLabelColor = MaterialTheme.colorScheme.primary, // Etiket rengi odaklandığında
@@ -52,6 +53,7 @@ fun ProfilePage(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp)
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top,
@@ -65,7 +67,7 @@ fun ProfilePage(
                 fontWeight = FontWeight.Bold,
                 fontSize = 28.sp // Başlık boyutunu artırdık
             ),
-            color = Color(0xFF352019),
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(top = 75.dp, bottom = 16.dp).padding(horizontal = 16.dp),
 
         )
@@ -86,7 +88,7 @@ fun ProfilePage(
 
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = Color(0xFF352019)),
+            textStyle = TextStyle(color = MaterialTheme.colorScheme.primary),
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
@@ -107,7 +109,7 @@ fun ProfilePage(
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = Color(0xFF352019)),
+            textStyle = TextStyle(color = MaterialTheme.colorScheme.primary),
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
@@ -128,7 +130,7 @@ fun ProfilePage(
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = Color(0xFF352019)),
+            textStyle = TextStyle(color = MaterialTheme.colorScheme.primary),
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
@@ -162,7 +164,7 @@ fun ProfilePage(
             },
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
             shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(Color(0xFFFEF970))
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.surface)
         ) {
             Text("Bilgileri Güncelle",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -183,7 +185,7 @@ fun ProfilePage(
 
             },
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
-            colors = ButtonDefaults.buttonColors(Color(0xFFFEF970)),
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.surface),
             shape = RoundedCornerShape(8.dp)
         ) {
             Text("Çıkış Yap",

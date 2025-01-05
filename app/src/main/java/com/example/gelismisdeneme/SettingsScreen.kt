@@ -35,7 +35,7 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF352019))
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -76,7 +76,7 @@ fun NotificationSettings(
         Text(
             text = "Notification Settings",
             style = MaterialTheme.typography.headlineMedium,
-            color = Color(0xFFFEF9F0)
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -86,7 +86,7 @@ fun NotificationSettings(
         ) {
             Text(
                 text = "Enable Notifications",
-                color = Color(0xFFFEF9F0),
+                color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontSize = 20.sp
                 ),
@@ -114,7 +114,7 @@ fun SocialMediaButtons() {
         Text(
             text = "Follow Us",
             style = MaterialTheme.typography.headlineMedium,
-            color = Color(0xFFFEF9F0)
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(
@@ -160,7 +160,7 @@ fun VersionInfo() {
         Text(
             text = "App Version",
             style = MaterialTheme.typography.headlineMedium,
-            color = Color(0xFFFEF9F0)
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -168,7 +168,7 @@ fun VersionInfo() {
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontSize = 20.sp
             ),
-            color = Color(0xFFFEF9F0)
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }

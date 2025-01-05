@@ -1,5 +1,6 @@
 package com.example.gelismisdeneme
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -45,13 +46,14 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Giriş Yap", style = MaterialTheme.typography.headlineLarge.copy(
             fontSize = 40.sp,
-            color = Color(0xFF352019)
+            color = MaterialTheme.colorScheme.primary
         ))
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -59,12 +61,12 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = firstName,
             onValueChange = { firstName = it },
-            label = { Text("Ad", color = Color(0xFF352019)) },
+            label = { Text("Ad", color = MaterialTheme.colorScheme.primary) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
-                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
-                cursorColor = Color(0xFF352019) // İmleç rengi
+                focusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklanmadığında çerçeve rengi
+                cursorColor = MaterialTheme.colorScheme.primary // İmleç rengi
             )
         )
 
@@ -73,12 +75,12 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = lastName,
             onValueChange = { lastName = it },
-            label = { Text("Soyad", color = Color(0xFF352019)) },
+            label = { Text("Soyad", color = MaterialTheme.colorScheme.primary) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
-                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
-                cursorColor = Color(0xFF352019) // İmleç rengi
+                focusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklanmadığında çerçeve rengi
+                cursorColor = MaterialTheme.colorScheme.primary // İmleç rengi
             )
         )
 
@@ -87,12 +89,12 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = studentNumber,
             onValueChange = { studentNumber = it },
-            label = { Text("Öğrenci Numarası", color = Color(0xFF352019)) },
+            label = { Text("Öğrenci Numarası", color = MaterialTheme.colorScheme.primary) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
-                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
-                cursorColor = Color(0xFF352019) // İmleç rengi
+                focusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklanmadığında çerçeve rengi
+                cursorColor = MaterialTheme.colorScheme.primary // İmleç rengi
             )
         )
 
@@ -101,12 +103,12 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("E-posta", color = Color(0xFF352019)) },
+            label = { Text("E-posta", color = MaterialTheme.colorScheme.primary) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
-                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
-                cursorColor = Color(0xFF352019) // İmleç rengi
+                focusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklanmadığında çerçeve rengi
+                cursorColor = MaterialTheme.colorScheme.primary // İmleç rengi
             )
         )
 
@@ -115,12 +117,12 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Şifre", color = Color(0xFF352019)) },
+            label = { Text("Şifre", color = MaterialTheme.colorScheme.primary) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFF352019), // Odaklandığında çerçeve rengi
-                unfocusedBorderColor = Color(0xFF352019), // Odaklanmadığında çerçeve rengi
-                cursorColor = Color(0xFF352019) // İmleç rengi
+                focusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklandığında çerçeve rengi
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary, // Odaklanmadığında çerçeve rengi
+                cursorColor = MaterialTheme.colorScheme.primary // İmleç rengi
             ),
             visualTransformation = PasswordVisualTransformation()
         )
@@ -152,7 +154,7 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit) {
                 }
             },
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
-            colors = ButtonDefaults.buttonColors(Color(0xFFFEF970)),
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.surface),
             shape = RoundedCornerShape(8.dp)
         ) {
             Text(

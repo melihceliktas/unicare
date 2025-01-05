@@ -81,16 +81,19 @@ val appTypography = Typography(
 
 
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+private val DarkColor = darkColorScheme(
+    background = kahverengi,
+    secondary = krem,
+    primary = beyaz,
+    surface = sarı
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+private val LightColor = lightColorScheme(
+    background = beyaz,
+    secondary = krem,
+    primary= kahverengi,
+    surface = sarı
+
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -105,23 +108,13 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun GelismisdenemeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    darkTheme: Boolean,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val colors = if (darkTheme) DarkColor else LightColor
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = colors,
         typography = Typography,
         content = content
     )

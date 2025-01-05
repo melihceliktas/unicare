@@ -62,7 +62,7 @@ fun MeditationScreen() {
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFEF9F0),
+                        MaterialTheme.colorScheme.background,
                         Color(0xFFF5E6D3)
                     )
                 )
@@ -81,13 +81,13 @@ fun MeditationScreen() {
                     fontWeight = FontWeight.Bold,
                     fontSize = 36.sp
                 ),
-                color = Color(0xFF352019)
+                color = MaterialTheme.colorScheme.primary
             )
             
             Text(
                 text = "Zihinsel huzur için günlük meditasyon pratiği",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF352019).copy(alpha = 0.8f),
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
                 modifier = Modifier.padding(vertical = 8.dp)
             )
 
@@ -96,7 +96,7 @@ fun MeditationScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF352019))
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary)
             ) {
                 Column(
                     modifier = Modifier
@@ -110,14 +110,14 @@ fun MeditationScreen() {
                                 .size(200.dp)
                                 .scale(breathScale)
                                 .background(
-                                    color = Color(0xFFFEF9F0).copy(alpha = 0.2f),
+                                    color = MaterialTheme.colorScheme.background.copy(alpha = 0.2f),
                                     shape = CircleShape
                                 ),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = if (breathScale > 1f) "Nefes Al" else "Nefes Ver",
-                                color = Color(0xFFFEF9F0),
+                                color = MaterialTheme.colorScheme.background,
                                 style = MaterialTheme.typography.titleMedium
                             )
                         }
@@ -128,7 +128,7 @@ fun MeditationScreen() {
                     Text(
                         text = formatTime(remainingSeconds),
                         style = MaterialTheme.typography.displayLarge,
-                        color = Color(0xFFFEF9F0)
+                        color = MaterialTheme.colorScheme.background
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -148,9 +148,9 @@ fun MeditationScreen() {
                                 },
                                 colors = ButtonDefaults.outlinedButtonColors(
                                     contentColor = if (selectedMinutes == minutes) 
-                                        Color(0xFFFEF9F0) else Color(0xFFFEF9F0).copy(alpha = 0.6f)
+                                        MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.background.copy(alpha = 0.6f)
                                 ),
-                                border = BorderStroke(1.dp, Color(0xFFFEF9F0))
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.background)
                             ) {
                                 Text("${minutes}dk")
                             }
@@ -169,11 +169,11 @@ fun MeditationScreen() {
                                 isTimerRunning = !isTimerRunning
                                 if (isTimerRunning) showBreathingGuide = true
                             },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFEF9F0))
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.background)
                         ) {
                             Text(
                                 if (!isTimerRunning) "Başlat" else "Duraklat",
-                                color = Color(0xFF352019)
+                                color = MaterialTheme.colorScheme.primary
                             )
                         }
 
@@ -183,9 +183,9 @@ fun MeditationScreen() {
                                 remainingSeconds = selectedMinutes * 60
                                 showBreathingGuide = false
                             },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFEF9F0))
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.background)
                         ) {
-                            Text("Sıfırla", color = Color(0xFF352019))
+                            Text("Sıfırla", color = MaterialTheme.colorScheme.primary)
                         }
                     }
 
@@ -194,14 +194,14 @@ fun MeditationScreen() {
                         checked = showBreathingGuide,
                         onCheckedChange = { showBreathingGuide = it },
                         colors = SwitchDefaults.colors(
-                            checkedThumbColor = Color(0xFFFEF9F0),
-                            checkedTrackColor = Color(0xFFFEF9F0).copy(alpha = 0.5f)
+                            checkedThumbColor = MaterialTheme.colorScheme.background,
+                            checkedTrackColor = MaterialTheme.colorScheme.background.copy(alpha = 0.5f)
                         ),
                         modifier = Modifier.padding(top = 16.dp)
                     )
                     Text(
                         text = "Nefes Rehberi",
-                        color = Color(0xFFFEF9F0),
+                        color = MaterialTheme.colorScheme.background,
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 4.dp)
                     )
@@ -217,7 +217,7 @@ fun MeditationScreen() {
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Bold
                 ),
-                color = Color(0xFF352019),
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(vertical = 16.dp)
             )
 
@@ -266,7 +266,7 @@ fun QuickTipsSection() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -276,7 +276,7 @@ fun QuickTipsSection() {
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold
                 ),
-                color = Color(0xFF352019)
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(8.dp))
             
@@ -294,14 +294,14 @@ fun QuickTipsSection() {
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = null,
-                        tint = Color(0xFF352019),
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = tip,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF352019)
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -315,7 +315,7 @@ fun MeditationTechniqueCard(title: String, description: String, icon: ImageVecto
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -326,7 +326,7 @@ fun MeditationTechniqueCard(title: String, description: String, icon: ImageVecto
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = Color(0xFF352019),
+                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
@@ -335,13 +335,13 @@ fun MeditationTechniqueCard(title: String, description: String, icon: ImageVecto
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold
                     ),
-                    color = Color(0xFF352019)
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFF352019).copy(alpha = 0.8f),
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
                 modifier = Modifier.padding(top = 8.dp)
             )
         }
@@ -355,7 +355,7 @@ fun BenefitsSection() {
         style = MaterialTheme.typography.titleLarge.copy(
             fontWeight = FontWeight.Bold
         ),
-        color = Color(0xFF352019),
+        color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 16.dp)
     )
 
@@ -371,7 +371,7 @@ fun BenefitsSection() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 4.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF9F0))
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
         ) {
             Row(
                 modifier = Modifier
@@ -382,7 +382,7 @@ fun BenefitsSection() {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = Color(0xFF352019),
+                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
@@ -392,12 +392,12 @@ fun BenefitsSection() {
                         style = MaterialTheme.typography.titleSmall.copy(
                             fontWeight = FontWeight.Bold
                         ),
-                        color = Color(0xFF352019)
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text(
                         text = description,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF352019).copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
                     )
                 }
             }

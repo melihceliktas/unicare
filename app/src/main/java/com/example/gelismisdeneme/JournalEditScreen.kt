@@ -46,7 +46,7 @@ fun EditJournalScreen(
 ) {
 
     val textFieldColors = TextFieldDefaults.textFieldColors(
-        containerColor = Color(0xFFFEF9F0), // TextField'ın arka plan rengi
+        containerColor = MaterialTheme.colorScheme.background, // TextField'ın arka plan rengi
         focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Odaklanıldığında alt çizgi rengi
         unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurfaceVariant, // Odaklanılmadığında alt çizgi rengi
         focusedLabelColor = MaterialTheme.colorScheme.primary, // Etiket rengi odaklandığında
@@ -60,7 +60,8 @@ fun EditJournalScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .background(MaterialTheme.colorScheme.background)
+            .padding(16.dp),
     ) {
         // Başlık
         Text(
@@ -69,7 +70,7 @@ fun EditJournalScreen(
                 fontWeight = FontWeight.Bold,
                 fontSize = 36.sp // Başlık boyutunu artırdık
             ),
-            color = Color(0xFF352019),
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier
                 .padding(top = 125.dp, bottom = 16.dp)
                 .padding(horizontal = 16.dp),
@@ -85,13 +86,13 @@ fun EditJournalScreen(
                     "Başlık",
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontSize = 30.sp,        // Font boyutunu büyütme
-                        color = Color(0xFF352019)
+                        color = MaterialTheme.colorScheme.primary
                     ),
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
             },
             colors = textFieldColors,
-            textStyle = TextStyle(color = Color(0xFF352019), fontSize = 24.sp),
+            textStyle = TextStyle(color = MaterialTheme.colorScheme.primary, fontSize = 24.sp),
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
         )
 
@@ -106,7 +107,7 @@ fun EditJournalScreen(
                     "İçerik",
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontSize = 30.sp,        // Font boyutunu büyütme
-                        color = Color(0xFF352019)
+                        color = MaterialTheme.colorScheme.primary
                     ),
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
@@ -116,7 +117,7 @@ fun EditJournalScreen(
                 .padding(horizontal = 24.dp)
                 .height(200.dp), // İçeriğin yüksekliğini artırdık
             colors = textFieldColors,
-            textStyle = TextStyle(color = Color(0xFF352019),fontSize = 18.sp),
+            textStyle = TextStyle(color = MaterialTheme.colorScheme.primary,fontSize = 18.sp),
 
             )
 
@@ -135,7 +136,7 @@ fun EditJournalScreen(
                 }
             },
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
-            colors = ButtonDefaults.buttonColors(Color(0xFF352019)),
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
             shape = RoundedCornerShape(8.dp)
         ) {
             Text("Güncellemeyi Kaydet",
@@ -143,7 +144,7 @@ fun EditJournalScreen(
                     fontSize = 24.sp
 
                 ),
-                color = Color(0xFFFEF9F0)
+                color = MaterialTheme.colorScheme.background
             )
         }
     }

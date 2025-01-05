@@ -83,12 +83,12 @@ fun JournalScreen(
     }
 
     Scaffold(
-        containerColor = Color(0xFF352019),
+        containerColor = MaterialTheme.colorScheme.background,
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate("addJournal") },
-                containerColor = Color(0xFF352019),
-                contentColor = Color(0xFFFEF9F0),
+                containerColor = MaterialTheme.colorScheme.background,
+                contentColor = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(12.dp)
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Yeni Günlük Ekle")
@@ -107,7 +107,7 @@ fun JournalScreen(
                 "Günlükler",
                 style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
                 modifier = Modifier.padding(top = 60.dp).padding(horizontal = 8.dp),
-                color = Color(0xFFFEF9F0)
+                color = MaterialTheme.colorScheme.primary
 
             )
 
@@ -147,19 +147,19 @@ fun JournalListItem(
         shape = RoundedCornerShape(12.dp), // Köşeleri yuvarlamak için
 
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFFEF9F0)
+            containerColor = MaterialTheme.colorScheme.primary
         ),
 
 
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(entry.title, style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold, color = Color(0xFF352019))
+                fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.background)
 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(entry.content, style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF352019))
+                color = MaterialTheme.colorScheme.background)
 
 
 
@@ -196,9 +196,9 @@ fun JournalListItem(
                     },
                     modifier = Modifier.padding(end = 8.dp),
                     shape = RoundedCornerShape(50),
-                    border = BorderStroke(1.dp, color = Color(0xFF352019))
+                    border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.background)
                 ) {
-                    Text("Düzenle", color = Color(0xFF352019))
+                    Text("Düzenle", color = MaterialTheme.colorScheme.background)
                 }
 
                 // Silme butonu
@@ -215,14 +215,14 @@ fun JournalListItem(
                         }
                     },
                     shape = RoundedCornerShape(50),
-                    border = BorderStroke(1.dp, color = Color(0xFF352019)),
-                    colors = ButtonColors(containerColor = Color(0xFF352019),
-                        contentColor = Color(0xFF352019),
-                        disabledContentColor = Color(0xFF352019),
-                        disabledContainerColor = Color(0xFF352019))
+                    border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.background),
+                    colors = ButtonColors(containerColor = MaterialTheme.colorScheme.background,
+                        contentColor = MaterialTheme.colorScheme.background,
+                        disabledContentColor =MaterialTheme.colorScheme.background,
+                        disabledContainerColor = MaterialTheme.colorScheme.background)
 
                 ) {
-                    Text("Sil", color = Color(0xFFFEF9F0))
+                    Text("Sil", color = MaterialTheme.colorScheme.primary)
                 }
             }
         }
