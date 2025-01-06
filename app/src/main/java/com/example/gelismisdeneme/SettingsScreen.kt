@@ -42,7 +42,6 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
     ) {
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Notification Settings
         NotificationSettings(
             isEnabled = isEnabled,
             onToggleNotifications = { newStatus ->
@@ -52,12 +51,10 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Social Media Buttons
         SocialMediaButtons()
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Version Info
         VersionInfo()
     }
 }

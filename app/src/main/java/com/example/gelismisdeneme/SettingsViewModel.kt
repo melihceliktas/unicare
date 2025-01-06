@@ -25,11 +25,11 @@ class SettingsViewModel : ViewModel() {
         if (isEnabled) {
             requestForNotifications(context)
         } else {
-            // Handle disabling notifications
+            // Bildirim kapatılıp kapatılmadığını kontrol etmek için log mesajı
             Log.d("NotificationToggle", "Notifications turned off")
         }
 
-        // Update the UI state (for the switch)
+        // Swiich değişikliği
         _isNotificationsEnabled.value = isEnabled
     }
 
